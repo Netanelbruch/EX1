@@ -10,9 +10,7 @@ LIB_S_REC = libclassrec.a
 LIB_D_LOOP = libclassloops.so
 LIB_S_LOOP = libclassloops.a
 
-
-mains: $(OBJECTS_MAIN) $(OBJECTS_BASIC) $(OBJECTS_ADVANCED_REC) $(LIB_S_REC)
-	$(CC) -o mains main.o $(LIB_S_REC) -lm
+all: loops loopd recursives recursived mains maindloop maindrec
 
 main.o: main.c
 	$(CC) $(FLAGS) main.c -o $(OBJECTS_MAIN)
@@ -46,7 +44,8 @@ $(LIB_S_REC): $(OBJECTS_BASIC) $(OBJECTS_ADVANCED_REC)
 $(LIB_S_LOOP): $(OBJECTS_BASIC) $(OBJECTS_ADVANCED_LOOP)
 	$(AR) -rsc $(LIB_S_LOOP) $(OBJECTS_BASIC) $(OBJECTS_ADVANCED_LOOP)
 
-
+mains: $(OBJECTS_MAIN) $(OBJECTS_BASIC) $(OBJECTS_ADVANCED_REC) $(LIB_S_REC)
+	$(CC) -o mains main.o $(LIB_S_REC) -lm
 	
 maindloop: $(OBJECTS_MAIN) $(LIB_D_LOOP) 
 	$(CC) -o maindloop $(OBJECTS_MAIN) ./$(LIB_D_LOOP) -lm
@@ -54,7 +53,6 @@ maindloop: $(OBJECTS_MAIN) $(LIB_D_LOOP)
 maindrec: $(OBJECTS_MAIN) $(LIB_D_REC) 
 	$(CC) -o maindrec $(OBJECTS_MAIN) ./$(LIB_D_REC) -lm
 
-all: loops loopd recursives recursived mains maindloop maindrec
 
 .PHONY: clean all
 
