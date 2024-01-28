@@ -10,7 +10,6 @@ LIB_S_REC = libclassrec.a
 LIB_D_LOOP = libclassloops.so
 LIB_S_LOOP = libclassloops.a
 
-all: loops loopd recursives recursived mains maindloop maindrec
 
 main.o: main.c
 	$(CC) $(FLAGS) main.c -o $(OBJECTS_MAIN)
