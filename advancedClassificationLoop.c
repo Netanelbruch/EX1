@@ -1,75 +1,54 @@
 #include "NumClass.h"
-#include <stdio.h>
 
 
 
-/**
- * A strong number is the factorial sum of its digits, equal to the number itself.
- * 
-*/
-int isArmstrong(int numInt){
-    int  orginalnum = numInt;
-    int remainder;
-    int pow = 0;     
-
-    int result = 0;
-
-    for ( int i = 0; orginalnum!=0 ; i++)
-    {
-        orginalnum /= 10;
-        pow += 1;
+int power(int base, int exponent) {
+    int result = 1;
+    while (exponent > 0) {
+        result *= base;
+        exponent--;
     }
-    
-    int temp;
-    for(orginalnum = numInt; orginalnum!=0; orginalnum/=10)
-    {
+    return result;
+}
 
-        remainder = orginalnum%10;    
-        temp = remainder;
-       
-        for (int i = 1; i < pow; i++)
-        {
-            remainder *= temp;
-        }
-        
-        result += remainder;
+int isPalindrome(int i) {
+    int temp = i;
+    int revers = 0;
+    int r;
 
+    while (temp != 0) {
+        r = temp % 10;
+        revers = revers * 10 + r;
+        temp /= 10;
     }
 
-    if(result == numInt){
+    if (i == revers) {
         return 1;
     }
 
-
-    
     return 0;
 }
 
+int isArmstrong(int i) {
+    int num = i;
+    int cd = 0;
+    int count = 0;
 
+    while (num > 0) {
+        cd++;
+        num /= 10;
+    }
 
-/**
- * Strong number is a special number whose sum of the factorial of digits is equal to the original number. 
- * For Example: 145 is strong number. Since, 1! + 4! + 5! = 145. 
- * @return 1 if numInt is strong number.
-*/
-int isPalindrome(int numInt){
-    int remainder;
-    int sum = 0;
-    int numberOrginal = numInt;
-    while(numInt>0)    
-    {    
-        remainder = numInt %10;    
-        sum = (sum*10) + remainder;    
-        numInt = numInt/10;    
-    }     
-  
-    if(numberOrginal==sum)
-    {
-          
+    num = i;
+    int a = cd;
+    while (a > 0) {
+        count += power(num % 10, cd);
+        num /= 10;
+        a--;
+    }
+    if (count == i) {
         return 1;
-    }  
- 
-     
-    
+    }
+
     return 0;
 }
