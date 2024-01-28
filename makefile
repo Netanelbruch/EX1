@@ -55,6 +55,8 @@ maindrec: $(OBJECTS_MAIN) $(LIB_D_REC)
 
 
 .PHONY: clean all
+all: 
+	loops loopd recursives recursived mains maindloop maindrec
 
 clean: 
 	rm -f *.o *.a *.so maindloop maindrec mains
